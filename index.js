@@ -72,7 +72,8 @@ app.post('/chatgpt', async (req, res) => {
                 timeout: 0
             }
         )
-        res.send(chatgpt)
+        console.log(chatgpt)
+        res.send(chatgpt.data)
     } catch (e) {
         console.error(e)
         res.send({
