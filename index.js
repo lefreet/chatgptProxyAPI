@@ -66,7 +66,7 @@ app.post('/chatgpt', async (req, res) => {
     const openai = new OpenAIApi(configuration);
     console.log(req.body)
     try {
-        const chatgtp = await openai.createCompletion(
+        const chatgpt = await openai.createCompletion(
             req.body,
             {
                 timeout: 0
