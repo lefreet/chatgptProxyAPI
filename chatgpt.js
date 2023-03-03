@@ -8,8 +8,9 @@ const chatgptMsg = async (request,opts={})=>{
     let response 
     try{
         response = await api.sendMessage(request, opts);
-
+        console.log(response)
     }catch(e){
+        console.log(e)
         if (e.message === 'ChatGPTAPI error 429') {
             response = {
                 'role': 'bot',
