@@ -1,6 +1,8 @@
 import Express from 'express';
-import chatgptMsg from './chatgpt.js'
+// import chatgptMsg from './chatgpt.js'
+import { Configuration, OpenAIApi } from 'openai'
 const app = Express()
+
 
 app.set('x-powered-by', false)
 app.use(Express.json())
@@ -49,10 +51,20 @@ app.get('/', async (req, res) => {
  * 
  */
 
- app.post('/chatgpt', async (req, res) => {
-    const { q, opts = {} } = req.body
-    // console.log(q);
-    const chatgtp = await chatgptMsg(q, opts)
+//  app.post('/chatgpt', async (req, res) => {
+//     const { q, opts = {} } = req.body
+//     // console.log(q);
+//     const chatgtp = await chatgptMsg(q, opts)
+//     res.send(chatgtp)
+// })
+
+
+app.post('/chatgpt', async (req, res) => {
+    const configuration = new Configuration({
+      apiKey: req.query.key
+    });
+    const openai = new OpenAIApi(configuration);
+    const chatgtp = await openai.createCompletion(req.body)
     res.send(chatgtp)
 })
 
