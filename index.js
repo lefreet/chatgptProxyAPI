@@ -64,7 +64,12 @@ app.post('/chatgpt', async (req, res) => {
       apiKey: req.query.key
     });
     const openai = new OpenAIApi(configuration);
-    const chatgtp = await openai.createCompletion(req.body)
+    const chatgtp = await openai.createCompletion(
+        req.body,
+        {
+            timeout: 0
+        }
+    )
     res.send(chatgtp)
 })
 
