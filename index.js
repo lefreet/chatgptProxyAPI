@@ -65,14 +65,22 @@ app.post('/chatgpt', async (req, res) => {
     });
     const openai = new OpenAIApi(configuration);
     console.log(req.body)
-    const chatgtp = await openai.createCompletion(
-        req.body,
-        {
-            timeout: 0
-        }
-    )
-    console.log(22222)
-    res.send(chatgtp)
+    try {
+        const chatgtp = await openai.createCompletion(
+            req.body,
+            {
+                timeout: 0
+            }
+        )
+        res.send(chatgpt)
+    } catch (e) {
+        console.error(e)
+        res.send({
+            choices: [{
+                text: '你好，当前网络繁忙，请稍后再尝试.'
+            }]
+        })
+    }
 })
 
 
