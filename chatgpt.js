@@ -15,7 +15,7 @@ const chatgptMsg = async (request,opts={})=>{
             response = {
                 'role': 'bot',
                 'id': '0',
-                'text': "🤒🤒🤒出了一点小问题，请稍后重试下..."
+                'text': "🤒🤒🤒出了一点小问题，请稍后重试下......"
               }
           }
           console.error(e);
