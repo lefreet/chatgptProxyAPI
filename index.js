@@ -75,7 +75,7 @@ app.post('/chatgpt', async (req, res) => {
         console.log(chatgpt)
         res.send(chatgpt.data)
     } catch (e) {
-        console.error(e)
+        console.error(e.message)
         res.send({
             choices: [{
                 text: '你好，当前网络繁忙，请稍后再尝试.'
