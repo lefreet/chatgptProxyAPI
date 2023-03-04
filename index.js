@@ -65,6 +65,7 @@ app.post('/chatgpt', async (req, res) => {
     });
     const openai = new OpenAIApi(configuration);
     console.log(req.body)
+    console.log(req.query.key)
     try {
         const chatgpt = await openai.createCompletion(
             req.body,
@@ -75,7 +76,7 @@ app.post('/chatgpt', async (req, res) => {
         console.log(chatgpt)
         res.send(chatgpt.data)
     } catch (e) {
-        console.log(e)
+        // console.log(e)
         console.log(e.message)
         res.send({
             choices: [{
