@@ -70,7 +70,7 @@ app.post('/chatgpt', async (req, res) => {
         const chatgpt = await openai.createCompletion(
             req.body,
             {
-                timeout: 0
+                timeout: 1000 * 60
             }
         )
         console.log('data: \n', chatgpt.data)
