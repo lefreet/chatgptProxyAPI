@@ -64,21 +64,22 @@ app.post('/chatgpt', async (req, res) => {
       apiKey: req.query.key
     });
     const openai = new OpenAIApi(configuration);
+    console.log('user: ', req.query.user)
     console.log('body: \n', req.body)
-    console.log('key: ', req.query.key)
+    // console.log('key: ', req.query.key)
     try {
         console.log('send: ...')
         const chatgpt = await openai.createCompletion(
             req.body,
             {
-                timeout: 1000 * 60
+                timeout: 60000
             }
         )
         console.log('data: \n', chatgpt.data)
         res.send(chatgpt.data)
     } catch (e) {
-        console.log(e)
-        console.log('err: ', e.message)
+        // console.log(e)
+        console.log('err: \n', e.response ? e.response.status + e.response.data : e.message)
         res.send({
             choices: [{
                 text: '你好，当前网络繁忙，请稍后再尝试.'
