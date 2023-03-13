@@ -73,7 +73,7 @@ app.post('/chatgpt', async (req, res) => {
         const chatgpt = await openai.createChatCompletion(
             {
                 model: body.model,
-                message: [{
+                messages: [{
                     role: 'user',
                     content: body.prompt
                 }],
