@@ -66,11 +66,20 @@ app.post('/chatgpt', async (req, res) => {
     const openai = new OpenAIApi(configuration);
     console.log('user: ', req.query.user)
     console.log('body: \n', req.body)
+    const body = req.body
     // console.log('key: ', req.query.key)
     try {
         console.log('send: ...')
-        const chatgpt = await openai.createCompletion(
-            req.body,
+        const chatgpt = await openai.createChatCompletion(
+            {
+                model: body.model,
+                message: [{
+                    role: 'user',
+                    content: body.prompt
+                }],
+                temperature: body.temperature || 0.1,
+                max_tokens: body.max_tokens || 500
+            },
             {
                 timeout: 60000
             }
