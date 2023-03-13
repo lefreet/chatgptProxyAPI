@@ -85,6 +85,7 @@ app.post('/chatgpt', async (req, res) => {
             }
         )
         console.log('data: \n', chatgpt.data)
+        console.log('choices: \n', chatgpt.data.choices)
         res.send(chatgpt.data)
     } catch (e) {
         // console.log(e)
